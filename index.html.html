@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ruoktour.com</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="top-nav">
+    <button class="menu-button" type="button" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-title">Ruoktour💴</div>
+    <div class="search-bar-wrapper">
+      <input class="search-bar" type="text" placeholder="Buscar país o ciudad..." aria-label="Buscar" />
+      <span class="search-tooltip">Busca un lugar</span>
+    </div>
+  </nav>
+
+  <button class="start-section-button" type="button" onclick="abrirInicioGoogle()">✦</button>
+
+  <div id="googleLoginPanel" class="google-login-panel hidden" role="dialog" aria-modal="true">
+    <div class="google-login-card">
+      <button class="close-login-button" type="button" onclick="cerrarInicioGoogle()" aria-label="Cerrar">×</button>
+      <h2>Iniciar sesión</h2>
+      <p>Continúa con tu cuenta de Google para entrar a la sección.</p>
+      <button class="google-login-button" type="button" onclick="window.open('https://accounts.google.com', '_blank', 'noopener')">Iniciar con Google</button>
+    </div>
+  </div>
+
+  <div id="menuPanel" class="menu-panel hidden" role="dialog" aria-modal="true">
+    <div class="menu-panel-content">
+      <button class="close-menu-button" type="button" onclick="cerrarMenu()" aria-label="Cerrar menú">×</button>
+      <h3>Menú</h3>
+      <a href="#top" onclick="event.preventDefault(); cerrarMenu(); abrirInicioGoogle();">Inicio de sección</a>
+      <p class="menu-subtitle">Países</p>
+      <div class="menu-countries-list">
+        <button type="button" class="menu-country-item">Afganistán</button>
+        <button type="button" class="menu-country-item">Albania</button>
+        <button type="button" class="menu-country-item">Alemania</button>
+        <button type="button" class="menu-country-item">Andorra</button>
+        <button type="button" class="menu-country-item">Angola</button>
+        <button type="button" class="menu-country-item">Antigua y Barbuda</button>
+        <button type="button" class="menu-country-item">Arabia Saudita</button>
+        <button type="button" class="menu-country-item">Argelia</button>
+        <button type="button" class="menu-country-item">Argentina</button>
+        <button type="button" class="menu-country-item">Armenia</button>
+        <button type="button" class="menu-country-item">Australia</button>
+        <button type="button" class="menu-country-item">Austria</button>
+        <button type="button" class="menu-country-item">Azerbaiyán</button>
+        <button type="button" class="menu-country-item">Bahamas</button>
+        <button type="button" class="menu-country-item">Bangladés</button>
+        <button type="button" class="menu-country-item">Barbados</button>
+        <button type="button" class="menu-country-item">Barein</button>
+        <button type="button" class="menu-country-item">Bélgica</button>
+        <button type="button" class="menu-country-item">Belice</button>
+        <button type="button" class="menu-country-item">Benín</button>
+        <button type="button" class="menu-country-item">Bielorrusia</button>
+        <button type="button" class="menu-country-item">Bolivia</button>
+        <button type="button" class="menu-country-item">Bosnia y Herzegovina</button>
+        <button type="button" class="menu-country-item">Botsuana</button>
+        <button type="button" class="menu-country-item">Brasil</button>
+        <button type="button" class="menu-country-item">Brunéi</button>
+        <button type="button" class="menu-country-item">Bulgaria</button>
+        <button type="button" class="menu-country-item">Burkina Faso</button>
+        <button type="button" class="menu-country-item">Burundi</button>
+        <button type="button" class="menu-country-item">Bután</button>
+        <button type="button" class="menu-country-item">Cabo Verde</button>
+        <button type="button" class="menu-country-item">Camboya</button>
+        <button type="button" class="menu-country-item">Camerún</button>
+        <button type="button" class="menu-country-item">Canadá</button>
+        <button type="button" class="menu-country-item">Chad</button>
+        <button type="button" class="menu-country-item">Chile</button>
+        <button type="button" class="menu-country-item">China</button>
+        <button type="button" class="menu-country-item">Chipre</button>
+        <button type="button" class="menu-country-item">Ciudad del Vaticano</button>
+        <button type="button" class="menu-country-item">Colombia</button>
+        <button type="button" class="menu-country-item">Comoras</button>
+        <button type="button" class="menu-country-item">Corea del Norte</button>
+        <button type="button" class="menu-country-item">Corea del Sur</button>
+        <button type="button" class="menu-country-item">Costa de Marfil</button>
+        <button type="button" class="menu-country-item">Costa Rica</button>
+        <button type="button" class="menu-country-item">Croacia</button>
+        <button type="button" class="menu-country-item">Cuba</button>
+        <button type="button" class="menu-country-item">Dinamarca</button>
+        <button type="button" class="menu-country-item">Dominica</button>
+        <button type="button" class="menu-country-item">Ecuador</button>
+        <button type="button" class="menu-country-item">Egipto</button>
+        <button type="button" class="menu-country-item">El Salvador</button>
+        <button type="button" class="menu-country-item">Emiratos Árabes Unidos</button>
+        <button type="button" class="menu-country-item">Eritrea</button>
+        <button type="button" class="menu-country-item">Eslovaquia</button>
+        <button type="button" class="menu-country-item">Eslovenia</button>
+        <button type="button" class="menu-country-item">España</button>
+        <button type="button" class="menu-country-item">Estados Unidos</button>
+        <button type="button" class="menu-country-item">Estonia</button>
+        <button type="button" class="menu-country-item">Esuatini</button>
+        <button type="button" class="menu-country-item">Etiopía</button>
+        <button type="button" class="menu-country-item">Filipinas</button>
+        <button type="button" class="menu-country-item">Finlandia</button>
+        <button type="button" class="menu-country-item">Fiyi</button>
+        <button type="button" class="menu-country-item">Francia</button>
+        <button type="button" class="menu-country-item">Gabón</button>
+        <button type="button" class="menu-country-item">Gambia</button>
+        <button type="button" class="menu-country-item">Georgia</button>
+        <button type="button" class="menu-country-item">Ghana</button>
+        <button type="button" class="menu-country-item">Granada</button>
+        <button type="button" class="menu-country-item">Grecia</button>
+        <button type="button" class="menu-country-item">Guatemala</button>
+        <button type="button" class="menu-country-item">Guinea</button>
+        <button type="button" class="menu-country-item">Guinea-Bisáu</button>
+        <button type="button" class="menu-country-item">Guinea Ecuatorial</button>
+        <button type="button" class="menu-country-item">Guyana</button>
+        <span>Haití</span>
+        <span>Honduras</span>
+        <span>Hungría</span>
+        <span>India</span>
+        <span>Indonesia</span>
+        <span>Irak</span>
+        <span>Irán</span>
+        <span>Irlanda</span>
+        <span>Islandia</span>
+        <span>Islas Marshall</span>
+        <span>Islas Salomón</span>
+        <span>Israel</span>
+        <span>Italia</span>
+        <span>Jamaica</span>
+        <span>Japón</span>
+        <span>Jordania</span>
+        <span>Kazajistán</span>
+        <span>Kenia</span>
+        <span>Kirguistán</span>
+        <span>Kiribati</span>
+        <span>Kuwait</span>
+        <span>Laos</span>
+        <span>Lesoto</span>
+        <span>Letonia</span>
+        <span>Líbano</span>
+        <span>Liberia</span>
+        <span>Libia</span>
+        <span>Liechtenstein</span>
+        <span>Lituania</span>
+        <span>Luxemburgo</span>
+        <span>Macedonia del Norte</span>
+        <span>Madagascar</span>
+        <span>Malasia</span>
+        <span>Malaui</span>
+        <span>Maldivas</span>
+        <span>Malí</span>
+        <span>Malta</span>
+        <span>Marruecos</span>
+        <span>Mauricio</span>
+        <span>Mauritania</span>
+        <span>México</span>
+        <span>Micronesia</span>
+        <span>Moldavia</span>
+        <span>Mónaco</span>
+        <span>Mongolia</span>
+        <span>Montenegro</span>
+        <span>Mozambique</span>
+        <span>Myanmar</span>
+        <span>Namibia</span>
+        <span>Nauru</span>
+        <span>Nepal</span>
+        <span>Nicaragua</span>
+        <span>Níger</span>
+        <span>Nigeria</span>
+        <span>Noruega</span>
+        <span>Nueva Zelanda</span>
+        <span>Omán</span>
+        <span>Países Bajos</span>
+        <span>Pakistán</span>
+        <span>Palaos</span>
+        <span>Panamá</span>
+        <span>Papúa Nueva Guinea</span>
+        <span>Paraguay</span>
+        <span>Perú</span>
+        <span>Polonia</span>
+        <span>Portugal</span>
+        <span>Qatar</span>
+        <span>Reino Unido</span>
+        <span>República Centroafricana</span>
+        <span>República Checa</span>
+        <span>República del Congo</span>
+        <span>República Democrática del Congo</span>
+        <span>República Dominicana</span>
+        <span>Ruanda</span>
+        <span>Rumanía</span>
+        <span>Rusia</span>
+        <span>Samoa</span>
+        <span>San Cristóbal y Nieves</span>
+        <span>San Marino</span>
+        <span>San Vicente y las Granadinas</span>
+        <span>Santa Lucía</span>
+        <span>Santo Tomé y Príncipe</span>
+        <span>Senegal</span>
+        <span>Serbia</span>
+        <span>Seychelles</span>
+        <span>Sierra Leona</span>
+        <span>Singapur</span>
+        <span>Siria</span>
+        <span>Somalia</span>
+        <span>Sri Lanka</span>
+        <span>Sudáfrica</span>
+        <span>Sudán</span>
+        <span>Sudán del Sur</span>
+        <span>Suecia</span>
+        <span>Suiza</span>
+        <span>Surinam</span>
+        <span>Tailandia</span>
+        <span>Tanzania</span>
+        <span>Tayikistán</span>
+        <span>Timor Oriental</span>
+        <span>Togo</span>
+        <span>Tonga</span>
+        <span>Trinidad y Tobago</span>
+        <span>Túnez</span>
+        <span>Turkmenistán</span>
+        <span>Turquía</span>
+        <span>Tuvalu</span>
+        <span>Ucrania</span>
+        <span>Uganda</span>
+        <span>Uruguay</span>
+        <span>Uzbekistán</span>
+        <span>Vanuatu</span>
+        <span>Venezuela</span>
+        <span>Vietnam</span>
+        <span>Yemen</span>
+        <span>Yibuti</span>
+        <span>Zambia</span>
+        <span>Zimbabue</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="title-with-plane">
+      <div class="plane-icon" aria-hidden="true">✈</div>
+      <h1 class="page-title">Ruoktour➠</h1>
+    </div>
+
+    <div class="card">
+      <img class="logo-image" src="imagen/logo lobo.png" alt="Logo de la página" />
+      <h1>Bienvenido/a</h1>
+      <p></p>
+
+      <div class="button-group">
+        <button onclick="mostrarBogota()">Bogotá</button>
+        <button onclick="mostrarDarien()">El Darién</button>
+      </div>
+
+      <div id="backButtonContainer" class="back-button-container hidden">
+        <button onclick="reiniciar()">⬅ go back</button>
+      </div>
+
+      <div id="infoAction" class="info-action">
+        <button onclick="mostrarInformacion()">Mostrar información</button>
+      </div>
+
+      <div id="mensaje">Haz clic en una opción.</div>
+
+      <div id="infoSection" class="info-section">
+        <h3>Información</h3>
+
+        <div id="generalInfoPanel" class="info-panel general-info-panel">
+          <div id="generalInfoContent" class="general-info-content"></div>
+        </div>
+
+        <div id="bogotaPanel" class="info-panel">
+          <p id="bogotaTexto"></p>
+          <div class="bogota-gallery">
+            <img src="imagen/bogota 1.jpg" alt="Bogotá centro">
+            <img src="imagen/bogota 2.jpg
+            " alt="Monserrate en Bogotá">
+            <img src="imagen/bogota 3.jpg" alt="Calle de Bogotá">
+            <img src="imagen/bogota 4.jpg" alt="Bogotá urbana">
+          </div>
+        </div>
+
+        <div id="darienPanel" class="info-panel">
+          <div id="darienContent" class="darien-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="authorInfo" class="author-info">
+      <h2>Información del autor</h2>
+      <p><strong>Nombre:</strong> Juan Sebastián Rodríguez</p>
+      <p><strong>la pagina:</strong> Es para uso personal</p>
+      <div id="digitalClock" class="digital-clock" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <div id="citiesGallery" class="cities-gallery">
+    <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=600&q=80" alt="Ciudad 1">
+    <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=600&q=80" alt="Ciudad 2">
+    <img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=600&q=80" alt="Ciudad 3">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Ciudad 4">
+  </div>
+
+  <div class="pagination-title">mejores videos</div>
+
+  <div class="pagination" aria-label="Paginación">
+    <button type="button">1</button>
+    <button type="button">2</button>
+    <button type="button">3</button>
+    <button type="button">4</button>
+    <button type="button">5</button>
+    <button type="button">6</button>
+    <button type="button">7</button>
+    <button type="button">8</button>
+    <button type="button">9</button>
+    <button type="button">10</button>
+  </div>
+
+  <div id="supportBox" class="support-box">
+    <h2>Soporte</h2>
+    <p>¿Tienes dudas o problemas con la página? Contáctanos para recibir ayuda rápida y amable.</p>
+    <button class="support-button" type="button" onclick="abrirPanelSoporte()">Soporte</button>
+  </div>
+
+  <div id="supportPanel" class="support-panel hidden">
+    <div class="support-panel-content">
+      <button class="close-support-button" type="button" onclick="cerrarPanelSoporte()" aria-label="Cerrar soporte">×</button>
+      <h3>Registrar problema</h3>
+      <p>Aquí podrás escribir tu problema cuando lo necesites.</p>
+    </div>
+  </div>
+
+  <div id="termsBox" class="terms-box">
+    <h3>Términos y condiciones</h3>
+    <p>Al usar esta página, aceptas que la información presentada es con fines informativos y que el contenido puede cambiar en cualquier momento.</p>
+  </div>
+
+  <div class="about-box">
+    <center><h3>De qué trata la página</h3></center>
+    <center><p>En español: "Descubre la belleza oculta del mundo. Exploramos las ciudades más fascinantes, los países más vibrantes y los parques nacionales más impresionantes para traerte sus secretos mejor guardados y datos que te volarán la cabeza."
+
+IN INGLESS: "Unveiling the world's finest wonders. We explore breathtaking cities, countries, and national parks, bringing you fascinating facts and hidden stories from every corner of the map."</p> </center>
+  </div>
+
+  <script>
+    const mensaje = document.getElementById('mensaje');
+    const infoSection = document.getElementById('infoSection');
+    const bogotaTexto = document.getElementById('bogotaTexto');
+    const bogotaPanel = document.getElementById('bogotaPanel');
+    const darienPanel = document.getElementById('darienPanel');
+    const darienContent = document.getElementById('darienContent');
+    const generalInfoPanel = document.getElementById('generalInfoPanel');
+    const generalInfoContent = document.getElementById('generalInfoContent');
+    const authorInfo = document.getElementById('authorInfo');
+    const citiesGallery = document.getElementById('citiesGallery');
+    const backButtonContainer = document.getElementById('backButtonContainer');
+    const infoAction = document.getElementById('infoAction');
+    const topButtonsRow = document.getElementById('topButtonsRow');
+    const supportBox = document.getElementById('supportBox');
+    const termsBox = document.getElementById('termsBox');
+    const paginationTitle = document.querySelector('.pagination-title');
+    const pagination = document.querySelector('.pagination');
+    const digitalClock = document.getElementById('digitalClock');
+    const menuButton = document.querySelector('.menu-button');
+    const menuPanel = document.getElementById('menuPanel');
+    const searchInput = document.querySelector('.search-bar');
+    const countriesList = document.querySelector('.menu-countries-list');
+
+    const destinos = [
+      { nombre: 'Cartagena', image: 'https://source.unsplash.com/featured/400x300/?cartagena,colombia' },
+      { nombre: 'Medellín', image: 'https://source.unsplash.com/featured/400x300/?medellin,colombia' },
+      { nombre: 'Santa Marta', image: 'https://source.unsplash.com/featured/400x300/?santa+marta,colombia' },
+      { nombre: 'Salento', image: 'https://source.unsplash.com/featured/400x300/?salento,colombia' },
+      { nombre: 'Bogotá', image: 'https://source.unsplash.com/featured/400x300/?bogota,colombia' },
+      { nombre: 'Valle del Cocora', image: 'https://source.unsplash.com/featured/400x300/?valle+del+cocora,colombia' },
+      { nombre: 'Parque Tayrona', image: 'https://source.unsplash.com/featured/400x300/?tayrona,parque,colombia' },
+      { nombre: 'Parque Los Nevados', image: 'https://source.unsplash.com/featured/400x300/?los+nevados,parque,colombia' },
+      { nombre: 'Capurganá', image: 'https://source.unsplash.com/featured/400x300/?capurgana,colombia' },
+      { nombre: 'Villa de Leyva', image: 'https://source.unsplash.com/featured/400x300/?villa+de+leyva,colombia' },
+      { nombre: 'Leticia', image: 'https://source.unsplash.com/featured/400x300/?leticia,colombia' },
+      { nombre: 'San Andrés', image: 'https://source.unsplash.com/featured/400x300/?san+andres,colombia' },
+      { nombre: 'Isla Grande', image: 'https://source.unsplash.com/featured/400x300/?isla+grande,colombia' },
+      { nombre: 'Guatapé', image: 'https://source.unsplash.com/featured/400x300/?guatape,colombia' },
+      { nombre: 'Minca', image: 'https://source.unsplash.com/featured/400x300/?minca,colombia' },
+      { nombre: 'Parque Nacional Chingaza', image: 'https://source.unsplash.com/featured/400x300/?chingaza,parque,colombia' },
+      { nombre: 'Caño Cristales', image: 'https://source.unsplash.com/featured/400x300/?cano+cristales,colombia' },
+      { nombre: 'Monserrate', image: 'https://source.unsplash.com/featured/400x300/?monserrate,colombia' },
+      { nombre: 'Ciudad Perdida', image: 'https://source.unsplash.com/featured/400x300/?ciudad+perdida,colombia' },
+      { nombre: 'Parque Nacional Natural Sierra Nevada', image: 'https://source.unsplash.com/featured/400x300/?sierra+nevada,parque,colombia' },
+      { nombre: 'Popayán', image: 'https://source.unsplash.com/featured/400x300/?popayan,colombia' },
+      { nombre: 'Armenia', image: 'https://source.unsplash.com/featured/400x300/?armenia,colombia' },
+      { nombre: 'Manizales', image: 'https://source.unsplash.com/featured/400x300/?manizales,colombia' },
+      { nombre: 'Filandia', image: 'https://source.unsplash.com/featured/400x300/?filandia,colombia' },
+      { nombre: 'Pereira', image: 'https://source.unsplash.com/featured/400x300/?pereira,colombia' },
+      { nombre: 'Parque Nacional Natural El Tuparro', image: 'https://source.unsplash.com/featured/400x300/?tuparro,parque,colombia' },
+      { nombre: 'Neiva', image: 'https://source.unsplash.com/featured/400x300/?neiva,colombia' },
+      { nombre: 'San Agustín', image: 'https://source.unsplash.com/featured/400x300/?san+agustin,colombia' },
+      { nombre: 'Ipiales', image: 'https://source.unsplash.com/featured/400x300/?ipiales,colombia' },
+      { nombre: 'Puerto Nariño', image: 'https://source.unsplash.com/featured/400x300/?puerto+nariño,colombia' },
+      { nombre: 'Parque Nacional Natural Amacayacu', image: 'https://source.unsplash.com/featured/400x300/?amacayacu,parque,colombia' },
+      { nombre: 'Barranquilla', image: 'https://source.unsplash.com/featured/400x300/?barranquilla,colombia' },
+      { nombre: 'Santa Cruz de Mompox', image: 'https://source.unsplash.com/featured/400x300/?mompox,colombia' },
+      { nombre: 'Taganga', image: 'https://source.unsplash.com/featured/400x300/?taganga,colombia' },
+      { nombre: 'Nuquí', image: 'https://source.unsplash.com/featured/400x300/?nuqui,colombia' },
+      { nombre: 'Parque Nacional Natural Utría', image: 'https://source.unsplash.com/featured/400x300/?utria,parque,colombia' },
+      { nombre: 'Honda', image: 'https://source.unsplash.com/featured/400x300/?honda,colombia' },
+      { nombre: 'Girardot', image: 'https://source.unsplash.com/featured/400x300/?girardot,colombia' },
+      { nombre: 'Parque Nacional Natural Sumapaz', image: 'https://source.unsplash.com/featured/400x300/?sumapaz,parque,colombia' },
+      { nombre: 'Paipa', image: 'https://source.unsplash.com/featured/400x300/?paipa,colombia' },
+      { nombre: 'Ráquira', image: 'https://source.unsplash.com/featured/400x300/?raquira,colombia' },
+      { nombre: 'Parque Nacional Natural Los Katíos', image: 'https://source.unsplash.com/featured/400x300/?katios,parque,colombia' },
+      { nombre: 'Barichara', image: 'https://source.unsplash.com/featured/400x300/?barichara,colombia' },
+      { nombre: 'San Gil', image: 'https://source.unsplash.com/featured/400x300/?san+gil,colombia' },
+      { nombre: 'Parque Nacional Natural Puracé', image: 'https://source.unsplash.com/featured/400x300/?purace,parque,colombia' },
+      { nombre: 'La Macarena', image: 'https://source.unsplash.com/featured/400x300/?la+macarena,colombia' },
+      { nombre: 'Villavicencio', image: 'https://source.unsplash.com/featured/400x300/?villavicencio,colombia' },
+      { nombre: 'Riohacha', image: 'https://source.unsplash.com/featured/400x300/?riohacha,colombia' },
+      { nombre: 'Palomino', image: 'https://source.unsplash.com/featured/400x300/?palomino,colombia' },
+      { nombre: 'Parque Nacional Natural Macuira', image: 'https://source.unsplash.com/featured/400x300/?macuira,parque,colombia' },
+      { nombre: 'El Cocuy', image: 'https://source.unsplash.com/featured/400x300/?el+cocuy,colombia' },
+      { nombre: 'Parque Nacional Natural El Cocuy', image: 'https://source.unsplash.com/featured/400x300/?el+cocuy,parque,colombia' },
+      { nombre: 'Tunja', image: 'https://source.unsplash.com/featured/400x300/?tunja,colombia' },
+      { nombre: 'Moniquirá', image: 'https://source.unsplash.com/featured/400x300/?moniquira,colombia' },
+      { nombre: 'Parque Nacional Natural Tatacoa', image: 'https://source.unsplash.com/featured/400x300/?tatacoa,parque,colombia' },
+      { nombre: 'Trujillo', image: 'https://source.unsplash.com/featured/400x300/?trujillo,colombia' },
+      { nombre: 'Valledupar', image: 'https://source.unsplash.com/featured/400x300/?valledupar,colombia' },
+      { nombre: 'Parque Nacional Natural Cueva de los Guácharos', image: 'https://source.unsplash.com/featured/400x300/?guacharos,parque,colombia' },
+      { nombre: 'Pasto', image: 'https://source.unsplash.com/featured/400x300/?pasto,colombia' },
+      { nombre: 'Parque Nacional Natural Farallones de Cali', image: 'https://source.unsplash.com/featured/400x300/?farallones+de+cali,parque,colombia' },
+      { nombre: 'Cali', image: 'https://source.unsplash.com/featured/400x300/?cali,colombia' },
+      { nombre: 'Buga', image: 'https://source.unsplash.com/featured/400x300/?buga,colombia' },
+      { nombre: 'Parque Nacional Natural Gorgona', image: 'https://source.unsplash.com/featured/400x300/?gorgona,parque,colombia' },
+      { nombre: 'Mitú', image: 'https://source.unsplash.com/featured/400x300/?mitu,colombia' },
+      { nombre: 'Puerto Asís', image: 'https://source.unsplash.com/featured/400x300/?puerto+asis,colombia' },
+      { nombre: 'Parque Nacional Natural Tinigua', image: 'https://source.unsplash.com/featured/400x300/?tinigua,parque,colombia' },
+      { nombre: 'Quindío', image: 'https://source.unsplash.com/featured/400x300/?quindio,colombia' },
+      { nombre: 'Parque Nacional Natural Chingaza', image: 'https://source.unsplash.com/featured/400x300/?chingaza,parque,colombia' }
+    ];
+
+    function crearDestinos() {
+      if (!topButtonsRow) return;
+      topButtonsRow.innerHTML = destinos.map(destino => `
+        <div class="destination-card">
+          <button type="button">${destino.nombre}</button>
+          <img src="${destino.image}" alt="${destino.nombre}" loading="lazy" />
+        </div>
+      `).join('');
+    }
+
+    crearDestinos();
+
+    function actualizarReloj() {
+      const ahora = new Date();
+      const hora = ahora.toLocaleTimeString('es-ES', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      const fecha = ahora.toLocaleDateString('es-ES', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      });
+      if (digitalClock) {
+        digitalClock.innerHTML = `<div class="clock-time">${hora}</div><div class="clock-date">${fecha}</div>`;
+      }
+    }
+
+    actualizarReloj();
+    setInterval(actualizarReloj, 1000);
+
+    function abrirInicioGoogle() {
+      const panel = document.getElementById('googleLoginPanel');
+      if (panel) {
+        panel.classList.remove('hidden');
+      }
+    }
+
+    function cerrarInicioGoogle() {
+      const panel = document.getElementById('googleLoginPanel');
+      if (panel) {
+        panel.classList.add('hidden');
+      }
+    }
+
+    function abrirMenu() {
+      if (menuPanel) {
+        menuPanel.classList.remove('hidden');
+      }
+    }
+
+    function cerrarMenu() {
+      if (menuPanel) {
+        menuPanel.classList.add('hidden');
+      }
+    }
+
+    function abrirPanelSoporte() {
+      const panel = document.getElementById('supportPanel');
+      if (panel) {
+        panel.classList.remove('hidden');
+      }
+    }
+
+    function cerrarPanelSoporte() {
+      const panel = document.getElementById('supportPanel');
+      if (panel) {
+        panel.classList.add('hidden');
+      }
+    }
+
+    if (menuButton) {
+      menuButton.addEventListener('click', abrirMenu);
+    }
+
+    if (searchInput && countriesList) {
+      const countryItems = Array.from(countriesList.querySelectorAll('.menu-country-item'));
+
+      function filtrarPaises() {
+        const query = searchInput.value.trim().toLowerCase();
+
+        countryItems.forEach(item => {
+          const text = item.textContent.toLowerCase();
+          const coincide = text.includes(query);
+          item.style.display = coincide ? 'block' : 'none';
+        });
+      }
+
+      searchInput.addEventListener('input', filtrarPaises);
+      filtrarPaises();
+    }
+
+    function ocultarInfoSecundaria() {
+      authorInfo.classList.add('hidden');
+      citiesGallery.classList.add('hidden');
+      backButtonContainer.classList.remove('hidden');
+      infoAction.classList.add('hidden');
+      if (topButtonsRow) {
+        topButtonsRow.classList.add('hidden');
+      }
+      supportBox.classList.add('hidden');
+      termsBox.classList.add('hidden');
+      if (paginationTitle) {
+        paginationTitle.classList.add('hidden');
+      }
+      if (pagination) {
+        pagination.classList.add('hidden');
+      }
+    }
+
+    function mostrarInfoSecundaria() {
+      authorInfo.classList.remove('hidden');
+      citiesGallery.classList.remove('hidden');
+      backButtonContainer.classList.add('hidden');
+      infoAction.classList.remove('hidden');
+      if (topButtonsRow) {
+        topButtonsRow.classList.remove('hidden');
+      }
+      supportBox.classList.remove('hidden');
+      termsBox.classList.remove('hidden');
+      if (paginationTitle) {
+        paginationTitle.classList.remove('hidden');
+      }
+      if (pagination) {
+        pagination.classList.remove('hidden');
+      }
+    }
+
+    function mostrarBogota() {
+      bogotaTexto.textContent = 'Bogotá es una ciudad fascinante, llena de historia, cultura, contrastes y un alma muy propia que se siente en cada esquina 🌆✨. Es la capital de Colombia y una de las ciudades más importantes de América Latina, donde la tradición convive con la modernidad en una mezcla única que enamora a quienes la visitan y a quienes la llaman hogar 🏛️❤️. Se levanta sobre los Andes a gran altura, lo que le da un clima fresco, cambiante y muy especial, con mañanas de neblina, tardes de sol y noches que se llenan de luces y movimiento 🌫️☀️🌙.\n\nDesde la Plaza de Bolívar, corazón histórico y político del país, hasta los barrios coloridos de la Candelaria, Bogotá guarda historias de siglos, de culturas ancestrales, de conquistas, de luchas y de sueños que aún siguen vivos en sus calles y en su gente 📜🏛️. Allí se encuentran lugares tan emblemáticos como el Museo del Oro, el Museo Botero, los teatros, las iglesias antiguas y los mercados donde el ambiente se vuelve una celebración de sabor, música y vida 🎨🪙🎶.\n\nPero Bogotá no es solo historia; también es movimiento, progreso y esperanza. Es una ciudad donde nacen ideas, donde se construyen futuros, donde los jóvenes sueñan, los artistas crean y los vecinos comparten su día a día con una calidez muy particular 🤝💡. Su gastronomía es un verdadero tesoro: el ajiaco, las arepas, los chorizos, las bebidas calientes, los postres y los mercados llenos de aromas que despiertan todos los sentidos 🍲🥔🧀.\n\nAdemás, Bogotá tiene un alma muy profunda en sus parques, sus miradores y sus montañas cercanas. Subir a Monserrate o a Guadalupe es una experiencia inolvidable, porque desde allí se puede ver toda la ciudad extendiéndose como un mar de luces y colores, como un símbolo de grandeza y de esperanza 🌄✨.\n\nPor eso Bogotá es mucho más que una capital: es una ciudad que respira cultura, que se renueva cada día y que conserva su identidad con orgullo. Es un lugar de contrastes, de alegría, de esfuerzo y de belleza, donde cada barrio tiene su propia historia y cada persona contribuye a hacer de esta urbe un lugar único en el mundo 🌍💛.';
+      darienContent.innerHTML = '';
+      bogotaPanel.classList.add('active');
+      darienPanel.classList.remove('active');
+      mensaje.textContent = 'Has abierto la información sobre Bogotá.';
+      infoSection.classList.add('show');
+      ocultarInfoSecundaria();
+    }
+
+    function mostrarDarien() {
+      bogotaTexto.textContent = '';
+      darienContent.innerHTML = `
+        <p>El Darién es una región de selva, ríos y montañas que une Colombia con Panamá 🌿🌊. Es uno de los lugares más impresionantes del continente, lleno de vida silvestre, pueblos humildes y secretos que aún conservan su identidad ancestral 🐒🦜.</p>
+        <p>Este territorio es famoso por su biodiversidad, porque aquí conviven jaguares, monos, tapir, aves exóticas y miles de especies de plantas que hacen de la región un verdadero pulmón natural de la Tierra 🌳🦜.</p>
+        <img src="imagen/perro 1.jpg" alt="Selva del Darién">
+        <p>También es un lugar de gran importancia histórica, porque durante siglos ha sido paso de culturas, rutas de intercambio y caminos que unieron pueblos de América 🌎✨. Hoy, el Darién sigue siendo un símbolo de resistencia, de conexión y de la riqueza natural que aún debemos proteger 💚.</p>
+        <img src="imagen/perro 2.jpg" alt="Ríos del Darién">
+        <p>Su clima tropical, sus ríos caudalosos y sus selvas profundas lo convierten en un lugar misterioso y fascinante. Caminar por el Darién es entrar en un mundo donde el sonido de la naturaleza parece hablar, donde cada cascada y cada árbol cuenta una historia antigua 🌧️🍃.</p>
+        <img src="imagen/perro 3.jpg" alt="Paisaje del Darién">
+      `;
+      generalInfoPanel.classList.remove('active');
+      bogotaPanel.classList.remove('active');
+      darienPanel.classList.add('active');
+      mensaje.textContent = 'Has abierto la información sobre el Darién.';
+      infoSection.classList.add('show');
+      ocultarInfoSecundaria();
+    }
+
+    function mostrarMensaje() {
+      mensaje.textContent = '¡Hola! Gracias por visitar mi página.';
+      bogotaPanel.classList.remove('active');
+      darienPanel.classList.remove('active');
+      infoSection.classList.remove('show');
+    }
+
+    function cambiarTexto() {
+      mensaje.textContent = '¡El botón funciona correctamente!';
+      bogotaPanel.classList.remove('active');
+      darienPanel.classList.remove('active');
+      infoSection.classList.remove('show');
+    }
+
+    function mostrarInformacion() {
+      generalInfoContent.innerHTML = `
+        <h4>🌍 Bienvenidos a RUOKTOUR 🌍</h4>
+        <p>💫 Este espacio digital fue creado en 2026 por Juan Sebastián Rodríguez Duarte con el propósito de mostrar al mundo lo hermoso de nuestro planeta.</p>
+        <p>🗺️ RUOKTOUR nace como una ventana global dedicada a explorar y exponer de forma minuciosa la majestuosidad de las ciudades más fascinantes, la diversidad de los países y el valor natural de los parques nacionales más hermosos de la Tierra.</p>
+        <p>🌟 Más que un álbum visual, esta plataforma fue diseñada para nutrir la curiosidad de los viajeros y apasionados de la geografía, entregándoles datos interesantes, secretos culturales e historias únicas detrás de cada destino.</p>
+        <p>💚 De la mano de su fundador, Juan Sebastián, este sitio busca inspirar a las personas a descubrir el mundo, valorar la riqueza cultural de las urbes y respetar el entorno natural de nuestras reservas protegidas.</p>
+      `;
+      mensaje.textContent = 'Sección de información abierta.';
+      bogotaPanel.classList.remove('active');
+      darienPanel.classList.remove('active');
+      generalInfoPanel.classList.add('active');
+      infoSection.classList.add('show');
+      ocultarInfoSecundaria();
+    }
+
+    function reiniciar() {
+      mensaje.textContent = 'Haz clic en un botón.';
+      bogotaPanel.classList.remove('active');
+      darienPanel.classList.remove('active');
+      generalInfoPanel.classList.remove('active');
+      infoSection.classList.remove('show');
+      mostrarInfoSecundaria();
+    }
+  </script>
+</body>
+</html>
